@@ -34,5 +34,5 @@ Don't use MinGW. Last time I checked, it had 64Hz timer resolution.
 Linux:
 
     sudo apt-get install libglfw3-dev
-    g++ Source.cpp -std=c++17 -lGL -lglfw -Ofast
+    g++ Source.cpp -std=c++17 -lglfw -Ofast
     ./a.out
