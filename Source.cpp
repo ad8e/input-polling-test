@@ -7,13 +7,14 @@
 #include <vector>
 
 
-#define TEST_POLLING_RATE 2 //0 = don't. 1 = old mode, instant console output, creates issues with simultaneous keypreses. 2 = new mode, console output batched until end.
+#define TEST_POLLING_RATE 2 //0 = don't. 1 = old mode, instant console output, creates issues with simultaneous keypresses. 2 = new mode, console output batched until end.
 //currently, keyboard polling and mouse polling are mixed together, so only move your keyboard or your mouse, but not both simultaneously
 
 using frame_clock = std::chrono::steady_clock; //high resolution clock uses an unfortunate realtime clock on Linux https://stackoverflow.com/a/41203433/
 using float_millisecond = std::chrono::duration<float, std::ratio<1, 1000>>;
 GLFWwindow* window;
 std::vector<frame_clock::time_point> input_times;
+std::vector<char> input_key;
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
 	if (TEST_POLLING_RATE == 1 && action == GLFW_PRESS) {
 		static frame_clock::time_point previous_time = frame_clock::now();
@@ -23,6 +24,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 	}
 	else if (TEST_POLLING_RATE == 2 && action == GLFW_PRESS) {
 		input_times.push_back(frame_clock::now());
+		input_key.push_back(key);
 	}
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
@@ -37,6 +39,7 @@ void mouse_cursor_callback(GLFWwindow* window, double xpos, double ypos) {
 	}
 	else if (TEST_POLLING_RATE == 2) {
 		input_times.push_back(frame_clock::now());
+		input_key.push_back('m');
 	}
 }
 
@@ -56,10 +59,12 @@ void input_loop() {
 			for (int x = 1; x < input_times.size(); ++x) {
 				float result = float_millisecond(input_times[x] - input_times[x - 1]).count();
 				//if (result > 2 && result < 100) //for getting only the interesting timepoints
-					std::cout << (result) << '\n';
+					std::cout << result << ' ' << input_key[x] <<  '\n';
 			}
-			if (input_times.size() > 1)
+			if (input_times.size() > 1) {
 				input_times = { input_times.back() };
+				input_key = { input_key.back() };
+			}
 		}
 	}
 }
