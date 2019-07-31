@@ -54,18 +54,19 @@ void input_loop() {
 		}
 		else
 			glfwWaitEvents(); //this is actually quite good. not sure if it's as good as constant polling
+	}
+}
 
-		if (TEST_POLLING_RATE == 2) {
-			for (int x = 1; x < input_times.size(); ++x) {
-				float result = float_millisecond(input_times[x] - input_times[x - 1]).count();
-				//if (result > 2 && result < 100) //for getting only the interesting timepoints
-					std::cout << result << ' ' << input_key[x] <<  '\n';
-			}
-			if (input_times.size() > 1) {
-				input_times = { input_times.back() };
-				input_key = { input_key.back() };
-			}
+void measurements() {
+	if (TEST_POLLING_RATE == 2) {
+		for (int x = 1; x < input_times.size(); ++x) {
+			float result = float_millisecond(input_times[x] - input_times[x - 1]).count();
+			//if (result > 2 && result < 100) //for getting only the interesting timepoints
+				std::cout << result << ' ' << input_key[x] <<  'ms\n';
 		}
+		
+		input_times.clear;
+		input_key.clear;
 	}
 }
 
@@ -85,6 +86,11 @@ int main() {
 
 	input_loop();
 
+	measurements();
+	
+	// Waiting for a key to prevent premature terminating
+	std::cin.ignore();
+	
 	glfwTerminate();
 	return 0;
 }
