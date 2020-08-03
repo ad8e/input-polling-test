@@ -19,7 +19,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 	if (TEST_POLLING_RATE == 1 && action == GLFW_PRESS) {
 		static frame_clock::time_point previous_time = frame_clock::now();
 		auto now = frame_clock::now();
-		std::cout << (float_millisecond(now - previous_time).count());
+		std::cout << (float_millisecond(now - previous_time).count()) << ' ';
 		previous_time = now;
 	}
 	else if (TEST_POLLING_RATE == 2 && action == GLFW_PRESS) {
@@ -34,7 +34,7 @@ void mouse_cursor_callback(GLFWwindow* window, double xpos, double ypos) {
 	if (TEST_POLLING_RATE == 1) {
 		static frame_clock::time_point previous_time = frame_clock::now();
 		auto now = frame_clock::now();
-		std::cout << (float_millisecond(now - previous_time).count());
+		std::cout << (float_millisecond(now - previous_time).count()) << ' ';
 		previous_time = now;
 	}
 	else if (TEST_POLLING_RATE == 2) {
