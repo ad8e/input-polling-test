@@ -6,9 +6,9 @@ This was originally created to test issues with Thinkpad keyboards, but it can t
 # How to use it
 First, in some text editor, press asdf simultaneously. If the letters always come out in a specific order (for example, always fdsafdsafdsa instead of scrambled like asfdfadsdsaf), then your keyboard has a ordering problem. If you can press them almost at the same time and the ordering still persists, then the ordering problem is bigger. The size of the ordering problem represents how much you must slow down your typing in order to not scramble keys.
 
-If you have an ordering problem, run test.exe to get more precise data. Try pressing specific chords (two-button keypresses) like kl and sl simultaneously, and also closely-but-not-simultaneously. You'll see some numbers and letters: each line gives the key that was pressed, and the time in milliseconds since the previous press. Large numbers like 1000 represent the time to the previous chord, and small numbers like 24 represent the time between the two keys of the chord. Ignore the large numbers.
+If you have an ordering problem, run test.exe to get more precise data. When you press a key or move your mouse, you'll see some numbers and letters. Each line gives the key that was pressed, and the time in milliseconds since the previous press. Try pressing specific chords (two-button keypresses) like kl and sl simultaneously, and also closely-but-not-simultaneously. Large numbers like 1000 represent the time to the previous chord, and small numbers like 24 represent the time between the two keys of the chord. Ignore the large numbers.
 
-The ideal result is that every integer from 0 to 50 eventually appears in the output. This represents a 1000Hz scanning keyboard with no sampling problems. You'll see this only on high end keyboards.
+The ideal result is that every integer from 0 to 20 can appear in the output. This represents a 1000Hz scanning keyboard with no sampling problems. You'll see this only on high end keyboards.
 
 A standard result, on most OEM keyboards, is that you can achieve only numbers 0, 8, 16, 24, 32, ... This represents a 125Hz keyboard.
 
