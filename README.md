@@ -29,7 +29,10 @@ Project Settings: C/C++ -> Language -> C++ Language standard = std:latest. Add t
 
 Then build. My exact settings, for a reproducible build, were VS2017, Multi-threaded (non-DLL), Release mode, x64, GLFW 3.2.1.
 
-Don't use MinGW. Last time I checked, it had 64Hz timer resolution.
+Mingw-w64:
+
+    pacman -S mingw-w64-x86_64-glfw
+    g++ Source.cpp -std=c++17 -lglfw3 -O3 -static -I"glfw-folder-here/include" -lole32 -lgdi32 -lwinmm -s
 
 Linux:
 
