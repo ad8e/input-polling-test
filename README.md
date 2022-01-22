@@ -4,7 +4,7 @@ The idea behind test.exe is to output a number whenever you press a key or move 
 This was originally created to test issues with Thinkpad keyboards, but it can test any mouse or keyboard. https://www.reddit.com/r/thinkpad/comments/9j70v6/thinkpad_keyboard_firmware_worse_than_anyone/
 
 # How to use it
-First, in some text editor, press asdf simultaneously. If the letters always come out in a specific order (for example, always fdsafdsafdsa instead of scrambled like asfdfadsdsaf), then your keyboard has a ordering problem. If you can press them almost at the same time and the ordering still persists, then the ordering problem is bigger. The size of the ordering problem represents how much you must slow down your typing in order to not scramble keys.
+First, in some text editor, press asdf simultaneously. If the letters always come out in a specific order (for example, always fdsafdsafdsa instead of scrambled like asfdfadsdsaf), then your keyboard has a ordering problem. If you can press them not exactly at the same time and the ordering still persists, then the ordering problem is bigger. The size of the ordering problem represents how much you must slow down your typing in order to not scramble keys.
 
 If you have an ordering problem, run test.exe to get more precise data. When you press a key or move your mouse, you'll see some numbers and letters. Each line gives the key that was pressed, and the time in milliseconds since the previous press. Try pressing specific chords (two-button keypresses) like kl and sl simultaneously, and also closely-but-not-simultaneously. Large numbers like 1000 represent the time to the previous chord, and small numbers like 24 represent the time between the two keys of the chord. Ignore the large numbers.
 
@@ -36,6 +36,6 @@ Mingw-w64:
 
 Linux:
 
-    sudo apt-get install libglfw3-dev
+    sudo apt install libglfw3-dev
     g++ Source.cpp -std=c++17 -lglfw -Ofast
     ./a.out
