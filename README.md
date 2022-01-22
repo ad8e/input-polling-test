@@ -19,7 +19,7 @@ Lenovo Thinkpad X/T keyboards have a different result, where specific chords hav
 # How to build it
 Windows Visual Studio:
 
-If GLFW comes with a pre-compiled library for your _exact_ Visual Studio version, you may be able to use that. Otherwise, you must build GLFW from source. Here were my steps for VS2017:
+If GLFW comes with a pre-compiled library for your Visual Studio version, you may be able to use that. Otherwise, you must build GLFW from source. Here were my steps for VS2017:
 
 After opening the solution in Visual Studio, select the GLFW project, and change in Project Settings: C/C++ -> Code Generation -> Runtime Library -> remove the "DLL" part
 
